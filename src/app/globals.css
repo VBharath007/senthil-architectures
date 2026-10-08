@@ -1,0 +1,164 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: auto;
+  -webkit-text-size-adjust: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+body {
+  @apply bg-white text-ink-900 antialiased dark:bg-ink-950 dark:text-white;
+  transition: background-color 0.4s ease, color 0.4s ease;
+  overflow-x: clip;
+}
+
+h1, h2, h3, h4, h5, h6,
+p, span, a, button, label, li {
+  word-break: normal;
+  overflow-wrap: normal;
+  hyphens: none;
+  white-space: normal;
+}
+
+::selection {
+  @apply bg-brand-500/40 text-inherit;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 0px;
+}
+::-webkit-scrollbar-track {
+  @apply bg-transparent;
+}
+::-webkit-scrollbar-thumb {
+  @apply rounded-full bg-brand-700/40;
+}
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-brand-600/70;
+}
+
+/* Hide scrollbars on UI elements */
+.no-scrollbar::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+.no-scrollbar {
+  -ms-overflow-style: none !important;
+  scrollbar-width: none !important;
+}
+
+:focus-visible {
+  outline: 2px solid theme("colors.brand.400");
+  outline-offset: 2px;
+}
+
+/* Pro-Level Premium Glass Effect */
+.liquid-glass-card {
+  @apply relative overflow-hidden bg-white/80 backdrop-blur-xl border border-ink-900/10 shadow-[0_8px_30px_rgb(0,0,0,0.04)] transition-all duration-500 ease-out hover:-translate-y-1.5 hover:border-ink-900/20 hover:shadow-[0_16px_40px_rgb(0,0,0,0.08)];
+  transform: translateZ(0); /* Hardware acceleration */
+}
+
+.liquid-sheen-sweep {
+  @apply pointer-events-none absolute inset-0 bg-gradient-to-tr from-transparent via-white/[0.2] to-transparent opacity-0 transition-opacity duration-1000 ease-out;
+}
+.liquid-glass-card:hover .liquid-sheen-sweep {
+  @apply opacity-100;
+  transform: translateX(100%);
+  transition: transform 1.2s ease-out, opacity 0.4s ease;
+}
+
+.liquid-glass-bevel {
+  @apply pointer-events-none absolute inset-x-0 top-0 h-32 rounded-t-3xl bg-gradient-to-b from-white/[0.4] to-transparent opacity-100;
+}
+
+/* Beautiful Pill Language Toggle */
+.language-toggle {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px;
+  border-radius: 9999px;
+  background-color: rgba(18, 34, 12, 0.06);
+  border: 1px solid rgba(18, 34, 12, 0.12);
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.04);
+}
+.language-toggle button {
+  padding: 5px 12px;
+  border-radius: 9999px;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  color: #4a5568;
+  cursor: pointer;
+  border: none;
+  background: transparent;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.language-toggle button:hover {
+  color: #1a202c;
+}
+.language-toggle button[aria-pressed="true"] {
+  background-color: #ffffff;
+  color: #12220c;
+  font-weight: 700;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.08);
+}
+
+/* ==========================================================================
+   Tamil Typography & Alignment Engine (Preserves Exact Layout & Grid Structure)
+   ========================================================================== */
+html[lang="ta"] {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Nirmala UI", "Mukta Malar", "Latha", "Tamil Sangam MN", sans-serif;
+}
+
+/* Tamil glyphs are cursive/ligatures; wide tracking tears accents/vowels.
+   Normalize tracking specifically so Tamil words stay bonded and cleanly readable. */
+html[lang="ta"] [class*="tracking-"] {
+  letter-spacing: 0.01em !important;
+}
+
+/* Tamil script does not have Latin uppercase concept */
+html[lang="ta"] [class*="uppercase"] {
+  text-transform: none !important;
+}
+
+/* Ensure Tamil diacritics/vowels (ீ, ூ, ை) have headroom without clipping */
+html[lang="ta"] h1,
+html[lang="ta"] h2,
+html[lang="ta"] h3,
+html[lang="ta"] h4,
+html[lang="ta"] h5,
+html[lang="ta"] h6 {
+  line-height: 1.25;
+}
+
+/* Ensure desktop navbar links remain in single line */
+html[lang="ta"] header nav a {
+  white-space: nowrap;
+}
+
+/* Language Toggle specific sizing inside pills */
+.language-toggle button {
+  letter-spacing: normal !important;
+  text-transform: none !important;
+}
+
+
